@@ -42,6 +42,7 @@ Contact : /docs/contact-api.json
 Address : /docs/address-api.json
 
 ## Sample Request
+Note : Buka file test.http Jika menggunakan VSCode, mohon install ekstensi REST Client
 1. Register User API
 POST http://localhost:8000/api/users
 Content-Type: application/json
