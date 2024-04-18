@@ -216,6 +216,51 @@ Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
   ✓ logout success                                          
   ✓ logout failed
 
+# SOAL IMPLEMENTASI 2
+- Tampilkan seluruh data dari tabel "employees"
+SELECT * FROM employees;
+
+-- Berapa banyak karyawan yang memiliki posisi pekerjaan (job title) "Manager"?
+SELECT COUNT(*) AS total_managers FROM employees WHERE job_title = 'Manager';
+
+-- Tampilkan daftar nama dan gaji (salary) dari karyawan yang bekerja di departemen "Sales" atau "Marketing"
+SELECT name, salary FROM employees WHERE department IN ('Sales', 'Marketing');
+
+-- Hitung rata-rata gaji (salary) dari karyawan yang bergabung (joined) dalam 5 tahun terakhir (berdasarkan kolom "joined_date")
+SELECT AVG(salary) AS average_salary FROM employees WHERE joined_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR);
+
+-- Tampilkan 5 karyawan dengan total penjualan (sales) tertinggi dari tabel "employees" dan "sales_data"
+SELECT e.name, SUM(sd.sales) AS total_sales
+FROM employees e
+JOIN sales_data sd ON e.employee_id = sd.employee_id
+GROUP BY e.name
+ORDER BY total_sales DESC
+LIMIT 5;
+
+-- Tampilkan nama, gaji (salary), dan rata-rata gaji (salary) dari semua karyawan yang bekerja di departemen yang memiliki rata-rata gaji lebih tinggi dari gaji rata-rata di semua departemen
+SELECT e.name, e.salary, AVG(e2.salary) AS average_department_salary
+FROM employees e
+JOIN employees e2 ON e.department = e2.department
+GROUP BY e.name, e.salary
+HAVING e.salary > (SELECT AVG(salary) FROM employees);
+
+-- Tampilkan nama dan total penjualan (sales) dari setiap karyawan, bersama dengan peringkat (ranking) masing-masing karyawan berdasarkan total penjualan. Peringkat 1 adalah karyawan dengan total penjualan tertinggi
+SELECT name, total_sales, RANK() OVER (ORDER BY total_sales DESC) AS sales_rank
+FROM (
+    SELECT e.name, SUM(sd.sales) AS total_sales
+    FROM employees e
+    JOIN sales_data sd ON e.employee_id = sd.employee_id
+    GROUP BY e.name
+) AS ranked_sales;
+
+-- Buat sebuah stored procedure yang menerima nama departemen sebagai input, dan mengembalikan daftar karyawan dalam departemen tersebut bersama dengan total gaji (salary) yang mereka terima
+CREATE PROCEDURE GetDepartmentEmployees(IN dep_name VARCHAR(255))
+BEGIN
+    SELECT e.name, e.salary
+    FROM employees e
+    WHERE e.department = dep_name;
+END;
+
   
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
