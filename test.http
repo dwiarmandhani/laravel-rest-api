@@ -1,0 +1,124 @@
+### Register User API
+POST http://localhost:8000/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+    "username" : "mustdwi_admin",
+    "password": "@aduhlupa123",
+    "name": "Dwi Armandhani Admin"
+}
+
+### Login User API
+POST http://localhost:8000/api/users/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "username": "mustdwi",
+    "password": "@aduhlupa123"
+}
+
+### Get Current User API
+GET http://localhost:8000/api/users/current
+Accept: application/json
+Authorization: 8829eb90-96df-403a-ad09-2cc2ec957898
+
+### Update Current User API
+PATCH http://localhost:8000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization: 8829eb90-96df-403a-ad09-2cc2ec957898
+
+{
+    "name" : "Mas Dwi"
+}
+
+### Logout User API
+DELETE http://localhost:8000/api/users/logout
+Accept: application/json
+Authorization: 8829eb90-96df-403a-ad09-2cc2ec957898
+
+### Create Contact API
+POST http://localhost:8000/api/contacts
+Content-Type: application/json
+Accept: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+{
+    "first_name" : "Dwi",
+    "last_name" : "Sumiati",
+    "email" : "dwi@gmail.com",
+    "phone" : "085721813979"
+}
+
+### GEt Contact API #249
+GET http://localhost:8000/api/contacts/2300
+Accept: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+### Update Contact API #249
+PUT http://localhost:8000/api/contacts/2300
+Accept: application/json
+Content-Type: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+{
+    "first_name" : "Budi",
+    "last_name" : "Anduk",
+    "email" : "dwi@gmail.com",
+    "phone" : "08572181397"
+}
+
+### Delete Contact API #249
+DELETE http://localhost:8000/api/contacts/2300
+Accept: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+### Search Contact API
+GET http://localhost:8000/api/contacts?email=dwi
+Accept: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+### Create Address API #250
+POST http://localhost:8000/api/contacts/2302/addresses
+Accept: application/json
+Content-Type: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+{
+    "street": "Jalan Kenangan Manis",
+    "city" : "Saranjana",
+    "province": "Saranjana Utara",
+    "country": "Saranjanan",
+    "postal_code": "40000"
+}
+
+### Get Address API #25
+GET http://localhost:8000/api/contacts/2301/addresses/52
+Accept: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+### Update Address API #25
+PUT http://localhost:8000/api/contacts/2301/addresses/52
+Accept: application/json
+Content-Type: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+{
+    "street": "jalan melati Raya",
+    "city" : "Bandung",
+    "province": "dki jakarta",
+    "country": "indonesia",
+    "postal_code": "324234"
+}
+
+### Remove Address API #24
+DELETE http://localhost:8000/api/contacts/25/addresses/24
+Accept: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
+
+### List Address API
+GET http://localhost:8000/api/contacts/250/addresses
+Accept: application/json
+Authorization: 496d6e25-f43a-47db-b3ee-80deb8ebe3d1
